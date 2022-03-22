@@ -7,20 +7,17 @@ const Profile = () => {
   return (
     <div>
       <Container className="container-padd" fluid="md">
-        <h3>
-          <strong>{currentUser.username}</strong> Profile
-        </h3>
-      <p>
-        <strong>Id:</strong> {currentUser.id}
-      </p>
-      <p>
-        <strong>Email:</strong> {currentUser.email}
-      </p>
-      <strong>Authorities:</strong>
-      <ul>
-        {currentUser.roles &&
-          currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-      </ul>
+        <h1 style={{ textAlign: "center" }}>Informações do Usuário</h1>
+        <div className="perfil-informacoes">
+          <div>
+          <p>
+            <strong>Nome de Usuário:</strong> {currentUser.username}
+          </p>
+          <p>
+            <strong>Email:</strong> {currentUser.email}
+          </p>
+          </div>
+        </div>
       </Container>
     </div>
   );

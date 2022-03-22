@@ -1,6 +1,50 @@
 .container-padd {
   padding-top: 40px;
+  background: white;
+  height: 100vh;
 }
+
+body {
+  background: rgb(139, 139, 255);
+}
+
+/* perfil style */
+.perfil-informacoes {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+.perfil-informacoes > div {
+  background: rgb(189, 189, 189);
+  padding: 20px;
+  border-radius: 25px;
+}
+/* fim perfil */
+
+/* comentarios style */
+.comentarios-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comentario {
+  padding: 5px;
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 5px;
+  width: 35vw;
+  word-break: break-all;
+}
+
+.comentarios-espaco {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+/* fim comentarios */
 
 /*detalhes style*/
 .h1-centraliza {

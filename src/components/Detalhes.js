@@ -54,6 +54,7 @@ const Detalhes = () => {
   const initialComentarioState = {
     id: null,
     conteudo: "",
+    nameuser: "",
     destino_id: id,
   };
 
@@ -69,6 +70,7 @@ const Detalhes = () => {
   const salvarComentario = () => {
     var data = {
       conteudo: comentario.conteudo,
+      nameuser: currentUser.username,
       destino_id: comentario.id,
     };
 
@@ -77,6 +79,7 @@ const Detalhes = () => {
         setComentario({
           id: response.data.id,
           conteudo: response.data.conteudo,
+          username: response.data.nameuser,
           destino_id: response.id,
         });
         setSubmitted(true);
@@ -108,7 +111,7 @@ const Detalhes = () => {
 
   return (
     <div>
-      <Container className="container-padd" fluid="md">
+      <Container style={{height: "100%"}} className="container-padd" fluid="md">
         <h1 className="h1-centraliza">Local de Visita</h1>
         <div className="local-info">
           <div className="local-info-fundo-cor">
@@ -150,27 +153,25 @@ const Detalhes = () => {
             ) : (
               <div>
                 <div className="submit-form">
-                  
                   <div className="centraliza-textarea">
-                  <h3>Comente</h3>
+                    <h3>Comente</h3>
                     <div>
-                    <textarea className="area-comentario"
-                      type="text"
-                      
-                      id="conteudo"
-                      required
-                      value={comentario.conteudo}
-                      onChange={handleInputChange}
-                      name="conteudo"
-                    >
-                    </textarea>
+                      <textarea
+                        className="area-comentario"
+                        type="text"
+                        id="conteudo"
+                        required
+                        value={comentario.conteudo}
+                        onChange={handleInputChange}
+                        name="conteudo"
+                      ></textarea>
                     </div>
                     <button
-                    onClick={salvarComentario}
-                    className="btn btn-success"
-                  >
-                    Enviar
-                  </button>
+                      onClick={salvarComentario}
+                      className="btn btn-success"
+                    >
+                      Enviar
+                    </button>
                   </div>
                 </div>
               </div>
@@ -178,16 +179,17 @@ const Detalhes = () => {
           </div>
         )}
         <div>
-          <div className="col-md-6">
-            <h4>Lista de Comentarios</h4>
-            <ul className="list-group">
+          <div className="comentarios-list">
+            <h3 style={{paddingTop: "25px"}}>Lista de Comentarios</h3>
+            <div className="comentarios-espaco">
               {comentarios &&
                 comentarios.map((comentario, index) => (
-                  <li className="list-group-item" key={index}>
-                    {comentario.conteudo}
-                  </li>
+                  <div className="comentario" key={index}>
+                    <strong>@{comentario.nameuser}</strong>
+                    <p>{comentario.conteudo}</p>
+                  </div>
                 ))}
-            </ul>
+            </div>
           </div>
         </div>
       </Container>
