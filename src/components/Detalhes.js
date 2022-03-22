@@ -11,6 +11,10 @@ const Detalhes = () => {
     getDestino(id);
   }, [id]);
 
+  useEffect(() => {
+    retrieveComentarios();
+  }, []);
+
   const initialDestinoState = {
     id: null,
     cidade: "",
@@ -34,25 +38,9 @@ const Detalhes = () => {
       .catch((e) => {
         console.log(e);
       });
-
   };
 
   // comentários
-/*
-  const [comments, setComments] = useState([]);
-
-  const retrieveComments = () => {
-    CommentDataService.getAll(id)
-      .then((response) => {
-        setComments(response.data);
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
-  */
 
   const initialComentarioState = {
     id: null,
@@ -75,7 +63,7 @@ const Detalhes = () => {
       destino_id: comentario.id,
     };
 
-   ComentarioDataService.create(id, data)
+    ComentarioDataService.create(id, data)
       .then((response) => {
         setComentario({
           id: response.data.id,
@@ -96,6 +84,18 @@ const Detalhes = () => {
     setSubmitted(false);
   };
 
+  const [comentarios, setComentarios] = useState([]);
+
+  const retrieveComentarios = () => {
+    ComentarioDataService.getAll(id)
+      .then((response) => {
+        setComentarios(response.data);
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   return (
     <div>
@@ -133,37 +133,51 @@ const Detalhes = () => {
         </div>
       </div>
       <div>
-      {submitted ? (
-        <div>
-          <h4>You submitted successfully!</h4>
-          <button className="btn btn-success" onClick={novoComentario}>
-            Add
-          </button>
-        </div>
-      ) : (
-      <div>
-        <div className="submit-form">
-          <div className="form-group">
-            <label htmlFor="content">Comentário</label>
-            <input
-              type="text"
-              className="form-control"
-              id="conteudo"
-              required
-              value={comentario.conteudo}
-              onChange={handleInputChange}
-              name="conteudo"
-            />
+        {submitted ? (
+          <div>
+            <h4>Comentário realiazado com sucesso!</h4>
+            <button className="btn btn-success" onClick={novoComentario}>
+              Novo comentário
+            </button>
           </div>
-          <button onClick={salvarComentario} className="btn btn-success">
-            Submit
-          </button>
+        ) : (
+          <div>
+            <div className="submit-form">
+              <div className="form-group">
+                <label htmlFor="content">Comentário</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="conteudo"
+                  required
+                  value={comentario.conteudo}
+                  onChange={handleInputChange}
+                  name="conteudo"
+                />
+              </div>
+              <button onClick={salvarComentario} className="btn btn-success">
+                Enviar
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+      <div>
+        <div className="col-md-6">
+          <h4>Lista de Comentarios</h4>
+          <ul className="list-group">
+            {comentarios &&
+              comentarios.map((comentario, index) => (
+                <li
+                className="list-group-item"
+                  key={index}
+                >
+                  {comentario.conteudo}
+                </li>
+              ))}
+          </ul>
         </div>
       </div>
-      )}
-      </div>
-
-
     </div>
   );
 };
