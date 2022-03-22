@@ -10,6 +10,8 @@ import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 //import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
+import Mapa from "./components/Mapa";
+import Detalhes from "./components/Detalhes";
 
 const App = () => {
 
@@ -30,6 +32,7 @@ const App = () => {
     AuthService.logout();
     setCurrentUser(undefined);
   };
+  
   return (
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -40,6 +43,11 @@ const App = () => {
           <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={"/mapa"} className="nav-link">
+              Mapa
             </Link>
           </li>
           {currentUser && (
@@ -82,10 +90,12 @@ const App = () => {
         <Routes>
           <Route exact path={"/"} element={<Home />} />
           <Route exact path={"/home"} element={<Home />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/profile" element={<Profile />} />
-          <Route path="/user" element={<BoardUser />} />
+          <Route exact path={"/login"} element={<Login />} />
+          <Route exact path={"/register"} element={<Register />} />
+          <Route exact path={"/profile"} element={<Profile />} />
+          <Route exact path={"/mapa"} element={<Mapa />} />
+          <Route exact path={"/detalhes/:id/comentarios"} element={<Detalhes />} />
+          <Route path={"/user"} element={<BoardUser />} />
         </Routes>
       </div>
       {/*<AuthVerify logOut={logOut}/>*/}
