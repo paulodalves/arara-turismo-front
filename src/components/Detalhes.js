@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 
 import DestinoDataService from "../services/destino.service";
 import ComentarioDataService from "../services/comentario.service";
+import { Container } from "react-bootstrap";
+import "../App.css";
+import AuthService from "../services/auth.service";
 
 const Detalhes = () => {
   let { id } = useParams();
@@ -11,8 +14,14 @@ const Detalhes = () => {
     getDestino(id);
   }, [id]);
 
+  const [currentUser, setCurrentUser] = useState(undefined);
+
   useEffect(() => {
     retrieveComentarios();
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      setCurrentUser(user);
+    }
   }, []);
 
   const initialDestinoState = {
@@ -99,85 +108,89 @@ const Detalhes = () => {
 
   return (
     <div>
-      <div className="col-md-6">
-        <div>
-          <h4>Local de Visita</h4>
-          <label>
-            <strong>Estado:</strong>
-          </label>{" "}
-          {currentDestino.estado}
-        </div>
-        <div>
-          <label>
-            <strong>Cidade:</strong>
-          </label>{" "}
-          {currentDestino.cidade}
-        </div>
-        <div>
-          <label>
-            <strong>Bairro:</strong>
-          </label>{" "}
-          {currentDestino.bairro}
-        </div>
-        <div>
-          <label>
-            <strong>Rua:</strong>
-          </label>{" "}
-          {currentDestino.rua}
-        </div>
-        <div>
-          <label>
-            <strong>Descrição:</strong>
-          </label>{" "}
-          {currentDestino.descricao}
-        </div>
-      </div>
-      <div>
-        {submitted ? (
-          <div>
-            <h4>Comentário realiazado com sucesso!</h4>
-            <button className="btn btn-success" onClick={novoComentario}>
-              Novo comentário
-            </button>
-          </div>
-        ) : (
-          <div>
-            <div className="submit-form">
-              <div className="form-group">
-                <label htmlFor="content">Comentário</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="conteudo"
-                  required
-                  value={comentario.conteudo}
-                  onChange={handleInputChange}
-                  name="conteudo"
-                />
-              </div>
-              <button onClick={salvarComentario} className="btn btn-success">
-                Enviar
-              </button>
+      <Container className="container-padd" fluid="md">
+        <h1 className="h1-centraliza">Local de Visita</h1>
+        <div className="local-info">
+          <div className="local-info-fundo-cor">
+            <div className="dados-local">
+              <strong>Estado:</strong>
+              <p> {currentDestino.estado}</p>
+            </div>
+            <div className="dados-local">
+              <strong>Cidade:</strong>
+              <p> {currentDestino.cidade}</p>
+            </div>
+            <div className="dados-local">
+              <strong>Bairro:</strong>
+              <p> {currentDestino.bairro}</p>
+            </div>
+            <div className="dados-local">
+              <strong>Rua:</strong>
+              <p> {currentDestino.rua}</p>
+            </div>
+            <div className="dados-local">
+              <strong>Número:</strong>
+              <p> {currentDestino.numero}</p>
+            </div>
+            <div className="dados-local">
+              <strong>Descrição:</strong>
+              <p> {currentDestino.descricao}</p>
             </div>
           </div>
-        )}
-      </div>
-      <div>
-        <div className="col-md-6">
-          <h4>Lista de Comentarios</h4>
-          <ul className="list-group">
-            {comentarios &&
-              comentarios.map((comentario, index) => (
-                <li
-                className="list-group-item"
-                  key={index}
-                >
-                  {comentario.conteudo}
-                </li>
-              ))}
-          </ul>
         </div>
-      </div>
+        {currentUser && (
+          <div>
+            {submitted ? (
+              <div>
+                <h4>Comentário realiazado com sucesso!</h4>
+                <button className="btn btn-success" onClick={novoComentario}>
+                  Novo comentário
+                </button>
+              </div>
+            ) : (
+              <div>
+                <div className="submit-form">
+                  
+                  <div className="centraliza-textarea">
+                  <h3>Comente</h3>
+                    <div>
+                    <textarea className="area-comentario"
+                      type="text"
+                      
+                      id="conteudo"
+                      required
+                      value={comentario.conteudo}
+                      onChange={handleInputChange}
+                      name="conteudo"
+                    >
+                    </textarea>
+                    </div>
+                    <button
+                    onClick={salvarComentario}
+                    className="btn btn-success"
+                  >
+                    Enviar
+                  </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+        <div>
+          <div className="col-md-6">
+            <h4>Lista de Comentarios</h4>
+            <ul className="list-group">
+              {comentarios &&
+                comentarios.map((comentario, index) => (
+                  <li className="list-group-item" key={index}>
+                    {comentario.conteudo}
+                  </li>
+                ))}
+            </ul>
+          </div>
+        </div>
+      </Container>
     </div>
   );
 };

@@ -2,22 +2,25 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+
+import Logo from "./images/Logo_Arara_Turismo.png"
 import AuthService from "./services/auth.service";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
-//import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 import Mapa from "./components/Mapa";
 import Detalhes from "./components/Detalhes";
+import { Container, Nav, Navbar} from "react-bootstrap";
+import SaibaMais from "./components/SaibaMais";
 
 const App = () => {
-
   const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
     const user = AuthService.getCurrentUser();
+    console.log(user);
     if (user) {
       setCurrentUser(user);
     }
@@ -32,73 +35,51 @@ const App = () => {
     AuthService.logout();
     setCurrentUser(undefined);
   };
-  
+
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={"/"} className="navbar-brand">
-          bezKoder
-        </Link>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to={"/mapa"} className="nav-link">
-              Mapa
-            </Link>
-          </li>
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                User
-              </Link>
-            </li>
-          )}
-        </div>
-        {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                {currentUser.username}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
-                LogOut
-              </a>
-            </li>
-          </div>
-        ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Login
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
-                Sign Up
-              </Link>
-            </li>
-          </div>
-        )}
-      </nav>
-      <div className="container mt-3">
-        <Routes>
-          <Route exact path={"/"} element={<Home />} />
-          <Route exact path={"/home"} element={<Home />} />
-          <Route exact path={"/login"} element={<Login />} />
-          <Route exact path={"/register"} element={<Register />} />
-          <Route exact path={"/profile"} element={<Profile />} />
-          <Route exact path={"/mapa"} element={<Mapa />} />
-          <Route exact path={"/detalhes/:id/comentarios"} element={<Detalhes />} />
-          <Route path={"/user"} element={<BoardUser />} />
-        </Routes>
-      </div>
-      {/*<AuthVerify logOut={logOut}/>*/}
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="/home"><img style={{width: "100px"}} src={Logo} /></Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/mapa">Locais</Nav.Link>
+              {currentUser && <Nav.Link href="/profile">Perfil</Nav.Link>}
+              
+              <Nav.Link href="/sabermais">Saber Mais</Nav.Link>
+            </Nav>
+            {currentUser ? (
+              <Nav>
+                <Nav.Link href="/profile">{currentUser.username}</Nav.Link>
+                <Nav.Link href="/login" onClick={logOut}>
+                  Sair
+                </Nav.Link>
+              </Nav>
+            ) : (
+              <Nav>
+                <Nav.Link href="/login">Login</Nav.Link>
+                <Nav.Link href="/register">Cadastre-se</Nav.Link>
+              </Nav>
+            )}
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Routes>
+        <Route exact path={"/"} element={<Home />} />
+        <Route exact path={"/home"} element={<Home />} />
+        <Route exact path={"/login"} element={<Login />} />
+        <Route exact path={"/register"} element={<Register />} />
+        <Route exact path={"/profile"} element={<Profile />} />
+        <Route exact path={"/mapa"} element={<Mapa />} />
+        <Route
+          exact
+          path={"/detalhes/:id/comentarios"}
+          element={<Detalhes />}
+        />
+        <Route exact path={"/sabermais"} element={<SaibaMais />} />
+        <Route path={"/user"} element={<BoardUser />} />
+      </Routes>
     </div>
   );
 };

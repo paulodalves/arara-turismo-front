@@ -1,15 +1,15 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 import AuthService from "../services/auth.service";
 
 const Profile = () => {
   const currentUser = AuthService.getCurrentUser();
   return (
-    <div className="container">
-      <header className="jumbotron">
+    <div>
+      <Container className="container-padd" fluid="md">
         <h3>
           <strong>{currentUser.username}</strong> Profile
         </h3>
-      </header>
       <p>
         <strong>Id:</strong> {currentUser.id}
       </p>
@@ -21,6 +21,7 @@ const Profile = () => {
         {currentUser.roles &&
           currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
       </ul>
+      </Container>
     </div>
   );
 };

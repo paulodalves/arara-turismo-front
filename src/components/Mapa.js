@@ -3,10 +3,10 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Link } from "react-router-dom";
 import "leaflet/dist/leaflet.css";
 import DestinoDataService from "../services/destino.service";
-//import "./App.css";
-//import cidades from "./cidades.json";
+import "../App.css";
 
 import I from "leaflet";
+import { Col, Container, Row } from "react-bootstrap";
 
 const center = [-13.834601576065731, -49.31093021847496];
 
@@ -40,10 +40,16 @@ const Mapa = () => {
 
   return (
     <div>
-      <MapContainer
+      <Container  className="container-padd" fluid="md">
+      <Row className="mapa-texto">
+      <Col>
+          <h1>Nossos Locais</h1>
+          <p>Escolha um dos pontos e visite-nos!</p>
+      </Col>
+      <Col>
+      <MapContainer className="mobile-responsive mapa-tamanho ipad-responsive" 
         center={center}
         zoom={4}
-        style={{ width: "500px", height: "500px" }}
       >
         <TileLayer
           url="https://api.maptiler.com/maps/basic/256/{z}/{x}/{y}.png?key=xBRFgljdAAjNFKqBCFLw"
@@ -63,6 +69,10 @@ const Mapa = () => {
         )}
 
       </MapContainer>
+      </Col>
+      
+      </Row>
+      </Container>
     </div>
   );
 }
