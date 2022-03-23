@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import Rodape from "./Rodape";
 
 const SaibaMais = () => {
     return(
@@ -24,6 +25,7 @@ Unidade de Conservação.
                 <p><a href="https://roteirosecotrilhas.com.br/2019/06/25/o-turismo-de-base-comunitaria-nas-comunidades-indigenas/">Fonte</a></p>
             </article>
         </Container>
+        <Rodape />
     </div>
     )
 }

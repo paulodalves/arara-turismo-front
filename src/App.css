@@ -8,6 +8,16 @@ body {
   background: rgb(139, 139, 255);
 }
 
+footer {
+  background: black;
+  height: 18vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 /* perfil style */
 .perfil-informacoes {
   display: flex;
@@ -45,6 +55,23 @@ body {
   gap: 5px;
 }
 /* fim comentarios */
+
+/* contato style */
+
+.form-contato {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.form-contato > form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/*fim contato*/
 
 /*detalhes style*/
 .h1-centraliza {

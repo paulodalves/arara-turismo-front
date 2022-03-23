@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import ControlledCarousel from "./ControlledCarousel";
+import Rodape from "./Rodape";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
         <h1 style={{paddingBottom: "25px"}}>Arara Turismo</h1>
         <ControlledCarousel />
       </Container>
+      <Rodape />
     </div>
   );
 };

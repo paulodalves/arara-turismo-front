@@ -4,11 +4,13 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
+import Rodape from "./Rodape";
+import { Container } from "react-bootstrap";
 const required = (value) => {
   if (!value) {
     return (
       <div className="invalid-feedback d-block">
-        This field is required!
+        O campo é obrigatório!
       </div>
     );
   }
@@ -37,7 +39,7 @@ const Login = () => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(username, password).then(
         () => {
-          navigate("/profile");
+          navigate("/home");
           window.location.reload();
         },
         (error) => {
@@ -56,7 +58,8 @@ const Login = () => {
     }
   };
   return (
-    <div className="col-md-12">
+    <div>
+    <Container className="container-padd" fluid="md">
       <div className="card card-container">
         <img
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -65,7 +68,7 @@ const Login = () => {
         />
         <Form onSubmit={handleLogin} ref={form}>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Nome de Usuário</label>
             <Input
               type="text"
               className="form-control"
@@ -76,7 +79,7 @@ const Login = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Senha</label>
             <Input
               type="password"
               className="form-control"
@@ -104,7 +107,9 @@ const Login = () => {
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       </div>
-    </div>
+      </Container>
+      <Rodape />
+      </div>
   );
 };
 

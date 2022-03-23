@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import Rodape from "./Rodape";
+
 import DestinoDataService from "../services/destino.service";
 import ComentarioDataService from "../services/comentario.service";
 import { Container } from "react-bootstrap";
@@ -164,7 +166,7 @@ const Detalhes = () => {
                         value={comentario.conteudo}
                         onChange={handleInputChange}
                         name="conteudo"
-                      ></textarea>
+                      />
                     </div>
                     <button
                       onClick={salvarComentario}
@@ -178,7 +180,7 @@ const Detalhes = () => {
             )}
           </div>
         )}
-        <div>
+        <div style={{paddingBottom: "50px"}}>
           <div className="comentarios-list">
             <h3 style={{paddingTop: "25px"}}>Lista de Comentarios</h3>
             <div className="comentarios-espaco">
@@ -193,6 +195,7 @@ const Detalhes = () => {
           </div>
         </div>
       </Container>
+      <Rodape />
     </div>
   );
 };

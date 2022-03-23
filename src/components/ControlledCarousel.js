@@ -25,8 +25,8 @@ const ControlledCarousel = () => {
           alt="First slide"
         />
         <Carousel.Caption>
-        <button className="button-sabermais"><Link to={"/sabermais"}>Saber Mais</Link></button>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        <button className="button-sabermais"><Link to={"/sabermais"}>Saber mais</Link></button>
+          <p>Aventure-se na natureza.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -37,8 +37,8 @@ const ControlledCarousel = () => {
         />
 
         <Carousel.Caption>
-        <button className="button-sabermais"><Link to={"/sabermais"}>Saber Mais</Link></button>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button className="button-sabermais"><Link to={"/sabermais"}>Saber mais</Link></button>
+          <p>Conheça animais de diversas espécies.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -49,9 +49,9 @@ const ControlledCarousel = () => {
         />
 
         <Carousel.Caption>
-        <button className="button-sabermais"><Link to={"/sabermais"}>Saber Mais</Link></button>
+        <button className="button-sabermais"><Link to={"/sabermais"}>Saber mais</Link></button>
           <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            Conheça a cultura dos povos indígenas.
           </p>
         </Carousel.Caption>
       </Carousel.Item>

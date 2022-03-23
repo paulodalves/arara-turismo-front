@@ -4,12 +4,14 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import AuthService from "../services/auth.service";
+import { Container } from "react-bootstrap";
+import Rodape from "./Rodape";
 
 const required = (value) => {
   if (!value) {
     return (
       <div className="invalid-feedback d-block">
-        This field is required!
+        O campo é obrigatório!
       </div>
     );
   }
@@ -19,7 +21,7 @@ const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
       <div className="invalid-feedback d-block">
-        This is not a valid email.
+        O email não é válido.
       </div>
     );
   }
@@ -29,7 +31,7 @@ const vusername = (value) => {
   if (value.length < 3 || value.length > 20) {
     return (
       <div className="invalid-feedback d-block">
-        The username must be between 3 and 20 characters.
+        O nome de usuário tem que ter de 3 a 20 caracteres.
       </div>
     );
   }
@@ -38,7 +40,7 @@ const vpassword = (value) => {
   if (value.length < 6 || value.length > 40) {
     return (
       <div className="invalid-feedback d-block">
-        The password must be between 6 and 40 characters.
+        A senha tem que ter de 6 a 40 caracteres.
       </div>
     );
   }
@@ -88,7 +90,8 @@ const Register = (props) => {
     }
   };
   return (
-    <div className="col-md-12">
+    <div>
+      <Container className="container-padd" fluid="md">
       <div className="card card-container">
         <img
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -99,7 +102,7 @@ const Register = (props) => {
           {!successful && (
             <div>
               <div className="form-group">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">Nome de Usuário</label>
                 <Input
                   type="text"
                   className="form-control"
@@ -110,7 +113,7 @@ const Register = (props) => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">E-mail</label>
                 <Input
                   type="text"
                   className="form-control"
@@ -121,7 +124,7 @@ const Register = (props) => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Senha</label>
                 <Input
                   type="password"
                   className="form-control"
@@ -151,6 +154,8 @@ const Register = (props) => {
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       </div>
+      </Container>
+      <Rodape />
     </div>
   );
 };

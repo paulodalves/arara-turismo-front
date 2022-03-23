@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import AuthService from "../services/auth.service";
+import Rodape from "./Rodape";
 
 const Profile = () => {
   const currentUser = AuthService.getCurrentUser();
@@ -19,6 +20,7 @@ const Profile = () => {
           </div>
         </div>
       </Container>
+      <Rodape />
     </div>
   );
 };

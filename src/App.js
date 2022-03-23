@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-
 import Logo from "./images/Logo_Arara_Turismo.png"
 import AuthService from "./services/auth.service";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-import BoardUser from "./components/BoardUser";
 import EventBus from "./common/EventBus";
 import Mapa from "./components/Mapa";
 import Detalhes from "./components/Detalhes";
 import { Container, Nav, Navbar} from "react-bootstrap";
 import SaibaMais from "./components/SaibaMais";
+import FaleConosco from "./components/FaleConosco";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -44,10 +43,11 @@ const App = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/mapa">Locais</Nav.Link>
+              <Nav.Link href="/home">Home</Nav.Link>
               {currentUser && <Nav.Link href="/profile">Perfil</Nav.Link>}
-              
+              <Nav.Link href="/mapa">Locais</Nav.Link>              
               <Nav.Link href="/sabermais">Saber Mais</Nav.Link>
+              <Nav.Link href="/faleconosco">Fale Conosco</Nav.Link>
             </Nav>
             {currentUser ? (
               <Nav>
@@ -78,7 +78,7 @@ const App = () => {
           element={<Detalhes />}
         />
         <Route exact path={"/sabermais"} element={<SaibaMais />} />
-        <Route path={"/user"} element={<BoardUser />} />
+        <Route exact path={"/faleconosco"} element={<FaleConosco />} />
       </Routes>
     </div>
   );

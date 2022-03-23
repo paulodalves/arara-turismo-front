@@ -1,13 +1,12 @@
 import React from "react";
 
+import "../App.css";
+
 const Rodape = () => {
     return(
         <footer>
             <div>
-
-            </div>
-            <div>
-                
+            <p>Arara Turismo &copy;</p>
             </div>
         </footer>
     )

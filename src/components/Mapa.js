@@ -7,6 +7,7 @@ import "../App.css";
 
 import I from "leaflet";
 import { Col, Container, Row } from "react-bootstrap";
+import Rodape from "./Rodape";
 
 const center = [-13.834601576065731, -49.31093021847496];
 
@@ -70,9 +71,9 @@ const Mapa = () => {
 
       </MapContainer>
       </Col>
-      
       </Row>
       </Container>
+      <Rodape />
     </div>
   );
 }
