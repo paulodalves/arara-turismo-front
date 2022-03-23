@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -23,6 +23,11 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Login | Arara Turismo"
+  },[])
+
   const onChangeUsername = (e) => {
     const username = e.target.value;
     setUsername(username);
@@ -90,7 +95,7 @@ const Login = () => {
             />
           </div>
           <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
+            <button style={{marginTop:"5px"}} className="btn btn-primary btn-block" disabled={loading}>
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}

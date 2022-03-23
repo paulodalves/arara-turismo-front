@@ -20,11 +20,13 @@ const markerIcon = I.icon({
 
 const Mapa = () => {
 
+  useEffect(() => {
+    document.title = "Locais | Arara Turismo"
+  },[])
+
     useEffect(() => {
         retrieveDestinos();
       }, []);
-    
-    
     
       const [destinos, setDestinos] = useState([]);
     
@@ -43,9 +45,9 @@ const Mapa = () => {
     <div>
       <Container  className="container-padd" fluid="md">
       <Row className="mapa-texto">
-      <Col>
+      <Col className="titulo-mapa">
           <h1>Nossos Locais</h1>
-          <p>Escolha um dos pontos e visite-nos!</p>
+          <p>Escolha um dos pontos e visite uma aldeia!</p>
       </Col>
       <Col>
       <MapContainer className="mobile-responsive mapa-tamanho ipad-responsive" 
@@ -64,7 +66,9 @@ const Mapa = () => {
           key={idx}
         >
           <Popup>
-          <Link to={"/detalhes/" + destino.id + "/comentarios"}>{destino.cidade}</Link>
+          <p><strong>Nome:</strong> {destino.nome}</p>
+          <p><strong>Cidade:</strong> {destino.cidade}</p>
+          <Link to={"/detalhes/" + destino.id + "/comentarios"}>Detalhes</Link>
           </Popup>
         </Marker>
         )}

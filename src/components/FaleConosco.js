@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { Container } from "react-bootstrap";
 import "../App.css";
@@ -7,6 +7,10 @@ import Rodape from "./Rodape";
 
 const FaleConosco = () => {
   const form = useRef();
+
+  useEffect(() => {
+    document.title = "Fale conosco | Arara Turismo"
+  },[])
 
   const sendEmail = (e) => {
     e.preventDefault();

@@ -4,6 +4,7 @@
   height: 100vh;
 }
 
+
 body {
   background: rgb(139, 139, 255);
 }
@@ -17,6 +18,13 @@ footer {
   align-items: center;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+p, strong, span {
+  font-family: 'Roboto', sans-serif;
+}
 
 /* perfil style */
 .perfil-informacoes {
@@ -88,14 +96,13 @@ footer {
 .dados-local {
   display: flex;
   gap: 15px;
+  
 }
 
 .local-info-fundo-cor {
   width: fit-content;
   background-color: rgb(189, 189, 189);
   padding: 20px;
-  padding-left: 50px;
-  padding-right: 80px;
   border-radius: 25px;
 }
 
@@ -147,6 +154,13 @@ footer {
   height: 80vh;
 }
 
+.titulo-mapa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 /* Browser desktop*/
 @media only screen and (max-width: 960px) {
   .mapa-texto {
@@ -167,6 +181,15 @@ footer {
   .mapa-texto {
     display: flex;
     flex-direction: column;
+  }
+
+  .area-comentario {
+    width: 80vw;
+    height: 10vh;
+  }
+
+  .comentario {
+    width: 90vw;
   }
 
   .mobile-responsive {

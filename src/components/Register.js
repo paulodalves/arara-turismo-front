@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
@@ -6,8 +6,8 @@ import { isEmail } from "validator";
 import AuthService from "../services/auth.service";
 import { Container } from "react-bootstrap";
 import Rodape from "./Rodape";
-
 const required = (value) => {
+
   if (!value) {
     return (
       <div className="invalid-feedback d-block">
@@ -46,6 +46,10 @@ const vpassword = (value) => {
   }
 };
 const Register = (props) => {
+  useEffect(() => {
+    document.title = "Cadastro | Arara Turismo"
+  },[])
+  
   const form = useRef();
   const checkBtn = useRef();
   const [username, setUsername] = useState("");
@@ -135,7 +139,7 @@ const Register = (props) => {
                 />
               </div>
               <div className="form-group">
-                <button className="btn btn-primary btn-block">Sign Up</button>
+                <button style={{marginTop:"5px"}} className="btn btn-primary btn-block">Sign Up</button>
               </div>
             </div>
           )}

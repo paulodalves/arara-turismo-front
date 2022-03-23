@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import Rodape from "./Rodape";
 
 const SaibaMais = () => {
+    useEffect(() => {
+        document.title = "Saiba mais | Arara Turismo"
+      },[])
     return(
     <div>
         <Container className="container-padd" fluid="md">

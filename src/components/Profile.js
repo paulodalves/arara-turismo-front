@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import AuthService from "../services/auth.service";
 import Rodape from "./Rodape";
 
 const Profile = () => {
   const currentUser = AuthService.getCurrentUser();
+
+  useEffect(() => {
+    document.title = "Perfil | Arara Turismo"
+  },[])
+
   return (
     <div>
       <Container className="container-padd" fluid="md">

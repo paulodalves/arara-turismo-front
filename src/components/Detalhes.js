@@ -13,6 +13,10 @@ const Detalhes = () => {
   let { id } = useParams();
 
   useEffect(() => {
+    document.title = "Detalhes | Arara Turismo";
+  }, []);
+
+  useEffect(() => {
     getDestino(id);
   }, [id]);
 
@@ -28,6 +32,9 @@ const Detalhes = () => {
 
   const initialDestinoState = {
     id: null,
+    nome: "",
+    telefone: "",
+    email: "",
     cidade: "",
     estado: "",
     bairro: "",
@@ -113,10 +120,26 @@ const Detalhes = () => {
 
   return (
     <div>
-      <Container style={{height: "100%"}} className="container-padd" fluid="md">
+      <Container
+        style={{ height: "100%" }}
+        className="container-padd"
+        fluid="sm"
+      >
         <h1 className="h1-centraliza">Local de Visita</h1>
         <div className="local-info">
           <div className="local-info-fundo-cor">
+            <div className="dados-local">
+              <strong>Nome:</strong>
+              <p> {currentDestino.nome}</p>
+            </div>
+            <div className="dados-local">
+              <strong>Telefone:</strong>
+              <p> {currentDestino.telefone}</p>
+            </div>
+            <div className="dados-local">
+              <strong>E-mail:</strong>
+              <p> {currentDestino.email}</p>
+            </div>
             <div className="dados-local">
               <strong>Estado:</strong>
               <p> {currentDestino.estado}</p>
@@ -146,7 +169,7 @@ const Detalhes = () => {
         {currentUser && (
           <div>
             {submitted ? (
-              <div>
+              <div style={{ margiTop: "15px" }} className="local-info">
                 <h4>Comentário realiazado com sucesso!</h4>
                 <button className="btn btn-success" onClick={novoComentario}>
                   Novo comentário
@@ -165,6 +188,7 @@ const Detalhes = () => {
                         required
                         value={comentario.conteudo}
                         onChange={handleInputChange}
+                        maxLength="199"
                         name="conteudo"
                       />
                     </div>
@@ -180,9 +204,9 @@ const Detalhes = () => {
             )}
           </div>
         )}
-        <div style={{paddingBottom: "50px"}}>
+        <div style={{ paddingBottom: "50px" }}>
           <div className="comentarios-list">
-            <h3 style={{paddingTop: "25px"}}>Lista de Comentarios</h3>
+            <h3 style={{ paddingTop: "25px" }}>Lista de Comentarios</h3>
             <div className="comentarios-espaco">
               {comentarios &&
                 comentarios.map((comentario, index) => (
