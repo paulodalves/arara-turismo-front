@@ -16,6 +16,7 @@ import SaibaMais from "./components/SaibaMais";
 import FaleConosco from "./components/FaleConosco";
 
 const App = () => {
+
   const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -46,8 +47,8 @@ const App = () => {
               <Nav.Link href="/home">Home</Nav.Link>
               {currentUser && <Nav.Link href="/profile">Perfil</Nav.Link>}
               <Nav.Link href="/mapa">Locais</Nav.Link>              
-              <Nav.Link href="/sabermais">Saber Mais</Nav.Link>
-              <Nav.Link href="/faleconosco">Fale Conosco</Nav.Link>
+              <Nav.Link href="/quemsomos">Quem somos</Nav.Link>
+              <Nav.Link href="/faleconosco">Fale conosco</Nav.Link>
             </Nav>
             {currentUser ? (
               <Nav>
@@ -77,8 +78,9 @@ const App = () => {
           path={"/detalhes/:id/comentarios"}
           element={<Detalhes />}
         />
-        <Route exact path={"/sabermais"} element={<SaibaMais />} />
+        <Route exact path={"/quemsomos"} element={<SaibaMais />} />
         <Route exact path={"/faleconosco"} element={<FaleConosco />} />
+
       </Routes>
     </div>
   );

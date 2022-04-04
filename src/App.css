@@ -133,7 +133,7 @@ p, strong, span {
   background: rgba(0, 0, 255, 0);
 }
 
-.button-sabermais > a {
+.button-sabermais  {
   text-decoration: none;
   font-size: 25px;
   color: white;
@@ -141,11 +141,9 @@ p, strong, span {
 
 .button-sabermais:hover {
   background-color: rgb(255, 255, 255);
-}
-
-.button-sabermais > a:hover {
   color: black;
 }
+
 /*fim home*/
 
 /* Mapa style */
